@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style.css";
+import { listTaskFun } from "./TaskApi";
+
 import dashboardIcon from "../assets/icons/dashboard.svg";
 import taskIcon from "../assets/icons/task.svg";
 import notoficationIcon from "../assets/icons/notifications-outline.svg";
 import userIcon from "../assets/icons/profile.jpg";
 import dropdownIcon from "../assets/icons/caret-square-down.svg";
+
+import HighPriority from "./HighPriority";
+import NormalTask from "./NormalTask";
+import MediumPriority from "./MediumPriority";
+import CreateTask from "./CreateTask";
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [listTaskData, setListTaskData] = useState(null);
+
+  useEffect(() => {
+    listTaskFun(setListTaskData);
+  }, []);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="main">
       <div className="container">
@@ -42,9 +63,21 @@ const Home = () => {
             </div>
           </div>
           <div className="rightContainer2">
-            <div className=""></div>
-            <div>2</div>
-            <div>3</div>
+            <div className="box4">
+              <button onClick={openModal}>Create Task</button>
+              <CreateTask isopen={isModalOpen} onclose={closeModal} />
+            </div>
+            <div className="boxs">
+              <div className="box1">
+                <HighPriority listTaskData={listTaskData} />
+              </div>
+              <div className="box2">
+                <MediumPriority listTaskData={listTaskData} />
+              </div>
+              <div className="box3">
+                <NormalTask listTaskData={listTaskData} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
