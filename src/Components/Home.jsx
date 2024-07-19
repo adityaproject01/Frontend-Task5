@@ -7,6 +7,7 @@ import taskIcon from "../assets/icons/task.svg";
 import notoficationIcon from "../assets/icons/notifications-outline.svg";
 import userIcon from "../assets/icons/profile.jpg";
 import dropdownIcon from "../assets/icons/caret-square-down.svg";
+import clientsIcon from "../assets/icons/users.svg";
 
 import HighPriority from "./HighPriority";
 import NormalTask from "./NormalTask";
@@ -44,8 +45,8 @@ const Home = () => {
               <p>My Task</p>
             </div>
             <div href="#" className="btn iconSet ">
-              <img src={dashboardIcon} alt="dashboardIcon" />
-              <p>Dashboard</p>
+              <img src={clientsIcon} alt="dashboardIcon" />
+              <p>Clients</p>
             </div>
           </div>
         </div>
@@ -69,12 +70,15 @@ const Home = () => {
             </div>
             <div className="boxs">
               <div className="box1">
+                <p style={{ padding: "5px" }}>Priority Task</p>
                 <HighPriority listTaskData={listTaskData} />
               </div>
               <div className="box2">
+                <p style={{ padding: "5px" }}>Medium Task</p>
                 <MediumPriority listTaskData={listTaskData} />
               </div>
               <div className="box3">
+                <p style={{ padding: "5px" }}>Normal Task</p>
                 <NormalTask listTaskData={listTaskData} />
               </div>
             </div>

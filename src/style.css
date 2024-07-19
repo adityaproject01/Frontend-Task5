@@ -74,7 +74,9 @@
         background-color: azure;
     }
     .active{
-        background: #cccce9;
+        background-color: #eae2f0;
+        /* background: #x; */
+        /* background: #cccce9; */
         border-radius: 10px 0px 0px 10px;
         color: blue;
     }
@@ -180,44 +182,84 @@
     background-color: #DCDDED;
     width: 30%;
     height: 95%;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
 }
-.box2{
-    background-color: #DCDDED;
-    border-radius: 10px;
 
+.box2{
+    border-radius: 10px;
+    background-color: #DCDDED;
     width: 30%;
     height: 95%;
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
 }
 .box3{
-   overflow: scroll;
     border-radius: 10px;
+    
     background-color: #DCDDED;
     width: 30%;
     height: 95%;
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
 }
 .modal {
     display: flex;
     flex-wrap: wrap;
     position: fixed;
-    top: 10%;
-    left: 10%;
-    width:80%;
+    align-items: center;
+    justify-content: center;
+    top: 25%;
+    left: 20%;
+    width: 56%;
     height: 50%;
     border-radius: 10px;
     background: white;
+    /* z-index: 100; Ensure this value is higher than other elements */
 }
 
 .modal-main {
-      color: black;
-    position:fixed;
-    width: 80%;
+    background: rgba(0, 0, 0, 0.5);
+    color: black;
+    position: fixed;
+    width: 100%;
     height: 100%;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+}
+.modal-content{
+    width: 30%;
+    height: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px black;
+}
+.modal-content h2{
+    border-radius: 10px 10px 0 0px;
+    box-shadow: 0 0 5px 0 black;
+    height: 40px;
+    background-image: linear-gradient(280deg, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+    color: black;
+}
+.modalForm{
+    padding: 10px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.modalForm input,select{
+    outline: none;
+    border: 1px solid black;
+}
+  .modalFormDetails{
+    width: 90%;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
   }
-  
   .display-block {
     display: block;
   }
@@ -226,10 +268,31 @@
     display: none;
   }
   .userDetailes{
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     text-align: justify;
   }
- 
+  .userDetailsMessage{
+    width: 40%;
+  }
+
+  .userDetailesSl{
+    width: 3%;
+  }
+  .userDetailesDelete{
+    width: 10%;
+  }
+ .viewMoreBtn{
+    border-radius:8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 7px;
+    background: #F9F2FE;
+    border: none;
+ }
 }

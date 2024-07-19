@@ -1,35 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import deleteIcon from "../assets/icons/trash-delete-bin.svg";
+import viewmoreIcon from "../assets/icons/chevron-right.svg";
+
 import ModifyTask from "./ModifyTask";
 import { deleteTaskFun } from "./TaskApi";
 const HighPriority = (listTaskData) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTaskIndex, setSelectedTaskIndex] = useState(null);
-  // const [selectedDeleteItem, setSelectedDeleteItem] = useState(null);
+  const [ld, setLd] = useState();
   const openModal = (index) => {
     setSelectedTaskIndex(index);
     setIsModalOpen(true);
   };
+
   function deleteItem(index) {
-    // setSelectedDeleteItem(index);
     deleteTaskFun(index);
+    window.location.reload();
   }
   const onClose = () => {
     setIsModalOpen(false);
     setSelectedTaskIndex(null);
   };
+  let sequentialNumber = 0;
   return (
     <div>
       {listTaskData?.listTaskData?.tasks?.map((item, index) => {
         if (item.priority === 3) {
+          sequentialNumber++;
           return (
-            <div key={index} className="userDetailes">
-              <p>{item.assigned_to}</p>
-              {console.log(item)}
-              {/* <p>Due Date: {item.due_date}</p> */}
-              <p> {item.message}</p>
-              <p>
-                <button onClick={() => openModal(index)}>ViewMore</button>
+            <div key={index + 1} className="userDetailes">
+              <div className="userDetailesSl">{sequentialNumber}</div>
+              <div className="userDetailsMessage">
+                {console.log(item)}
+                <p
+                  style={{
+                    textOverflow: "ellipsis",
+                    maxWidth: "100%",
+                    overflow: "hidden",
+                  }}
+                >
+                  {item.message}
+                </p>
+              </div>
+              <div>
+                <button
+                  className="viewMoreBtn"
+                  onClick={() => openModal(index)}
+                >
+                  View
+                  <img src={viewmoreIcon} alt="viewmoreIcons" />
+                </button>
                 {selectedTaskIndex === index && (
                   <ModifyTask
                     key={index}
@@ -43,14 +63,15 @@ const HighPriority = (listTaskData) => {
                     onClose={onClose}
                   />
                 )}
-              </p>
-              <p>
+              </div>
+              <div className="userDetailesDelete">
                 <img
                   src={deleteIcon}
+                  setLd={item.id}
                   onClick={() => deleteItem(item.id)}
                   alt="deleteIcon"
                 />
-              </p>
+              </div>
             </div>
           );
         }

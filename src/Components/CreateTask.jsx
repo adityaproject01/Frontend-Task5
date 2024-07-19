@@ -77,45 +77,47 @@ const CreateTask = ({ isopen, onclose }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Add New Task</h2>
-        <form onSubmit={handleCreateTask}>
-          <div>
-            <label>Name</label>
-            <input id="name" onChange={handleGetName} type="text" />
-          </div>
-          <div>
-            <label>Date</label>
-            <input type="datetime-local" onChange={handleGetDate} />
-          </div>
-          <div>
-            <label>Priority</label>
-            <select type="text" onChange={handleGetTaskType}>
-              <option disabled>Choose Task</option>
-              <option value="1">Normal Task</option>
-              <option value="2">Medium Task</option>
-              <option value="3">High Priority Task</option>
-            </select>
-          </div>
-          <div>
-            <label>User</label>
-            <select onChange={handleGetUser}>
-              <option>Choose the USer</option>
-              {userListData?.users?.map((item, index) => (
-                <option key={index} value={index}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <button>Save</button>
-            <button className="close" onClick={onclose}>
-              close
-            </button>
-          </div>
-        </form>
+    <div className="modal-main">
+      <div class="modal">
+        <div className="modal-content">
+          <h2>Add New Task</h2>
+          <form className="modalForm" onSubmit={handleCreateTask}>
+            <div className="modalFormDetails">
+              <label>Name</label>
+              <input id="name" onChange={handleGetName} type="text" />
+            </div>
+            <div className="modalFormDetails">
+              <label>Date</label>
+              <input type="datetime-local" onChange={handleGetDate} />
+            </div>
+            <div className="modalFormDetails">
+              <label>Priority</label>
+              <select type="text" onChange={handleGetTaskType}>
+                <option disabled>Choose Task</option>
+                <option value="1">Normal Task</option>
+                <option value="2">Medium Task</option>
+                <option value="3">High Priority Task</option>
+              </select>
+            </div>
+            <div className="modalFormDetails">
+              <label>User</label>
+              <select onChange={handleGetUser}>
+                <option>Choose the USer</option>
+                {userListData?.users?.map((item, index) => (
+                  <option key={index} value={index}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="modalFormDetails">
+              <button>Create</button>
+              <button className="close" onClick={onclose}>
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

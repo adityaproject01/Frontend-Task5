@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import editIcon from "../assets/icons/edit.svg";
 import { updateTaskFun } from "./TaskApi";
-
+import "../style.css";
 const ModifyTask = ({
   isModalOpen,
   onClose,
@@ -64,98 +63,92 @@ const ModifyTask = ({
   if (!isModalOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <span>Message</span>
+    <div className="modal-main">
+      <div class="modal">
+        <div className="modal-content">
+          <h2>View/Edit Task</h2>
+          <form className="modalForm" onSubmit={handleSubmit}>
+            <div className="modalFormDetails">
+              <span>Message</span>
+              <div>
+                {isEdit ? (
+                  <input
+                    type="text"
+                    value={updateValue.message || message}
+                    onChange={handleMessage}
+                  />
+                ) : (
+                  <span>{message}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="modalFormDetails">
+              <span>Due Date</span>
+              <div>
+                {isEdit ? (
+                  <input
+                    type="datetime-local"
+                    value={updateValue.due_date || due_date}
+                    onChange={handleDueDate}
+                  />
+                ) : (
+                  <span>{due_date}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="modalFormDetails">
+              <span>Created Date</span>
+              <div>
+                <span>{created_on}</span>
+              </div>
+            </div>
+
+            <div className="modalFormDetails">
+              <span>Priority</span>
+              <div>
+                {isEdit ? (
+                  <input
+                    type="number"
+                    value={updateValue.priority || priority}
+                    onChange={handlePriority}
+                  />
+                ) : (
+                  <span>{priority}</span>
+                )}
+              </div>
+            </div>
+
             <div>
-              {isEdit ? (
-                <input
-                  type="text"
-                  value={updateValue.message || message}
-                  onChange={handleMessage}
-                />
-              ) : (
-                <span>{message}</span>
-              )}
-              <img
+              <span>Assigned Name</span>
+              <div>
+                {isEdit ? (
+                  <input
+                    type="text"
+                    value={updateValue.assigned_to}
+                    onChange={handleAssignName}
+                  />
+                ) : (
+                  <span>{assigned_to}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="modalFormDetails">
+              <button className="close" onClick={onClose}>
+                Close
+              </button>
+              {/* <img
                 src={editIcon}
                 alt="editIcon"
                 onClick={() => setIsEdit(true)}
-              />
+              /> */}
+              <button onClick={() => setIsEdit(true)}>Edit</button>
+              <button type="submit">Update </button>
             </div>
-          </div>
-
-          <div>
-            <span>Due Date</span>
-            <div>
-              {isEdit ? (
-                <input
-                  type="datetime-local"
-                  value={updateValue.due_date || due_date}
-                  onChange={handleDueDate}
-                />
-              ) : (
-                <span>{due_date}</span>
-              )}
-              <img
-                src={editIcon}
-                alt="editIcon"
-                onClick={() => setIsEdit(true)}
-              />
-            </div>
-          </div>
-
-          <div>
-            <span>Created Date</span>
-            <div>
-              <span>{created_on}</span>
-            </div>
-          </div>
-
-          <div>
-            <span>Priority</span>
-            <div>
-              {isEdit ? (
-                <input
-                  type="number"
-                  value={updateValue.priority || priority}
-                  onChange={handlePriority}
-                />
-              ) : (
-                <span>{priority}</span>
-              )}
-              <img
-                src={editIcon}
-                alt="editIcon"
-                onClick={() => setIsEdit(true)}
-              />
-            </div>
-          </div>
-
-          <div>
-            <span>Assigned Name</span>
-            <div>
-              {isEdit ? (
-                <input
-                  type="text"
-                  value={updateValue.assigned_to}
-                  onChange={handleAssignName}
-                />
-              ) : (
-                <span>{assigned_to}</span>
-              )}
-              <img
-                src={editIcon}
-                alt="editIcon"
-                onClick={() => setIsEdit(true)}
-              />
-            </div>
-          </div>
-          <button onClick={onClose}>Close</button>
-          <button type="submit">Save</button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
