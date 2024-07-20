@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { updateTaskFun } from "./TaskApi";
+import editIcon from "../assets/icons/edit.svg";
+
 import "../style.css";
 const ModifyTask = ({
   isModalOpen,
@@ -9,7 +11,9 @@ const ModifyTask = ({
   created_on,
   priority,
   assigned_to,
+  assigned_from,
   id,
+  refreshTasks,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [dueDate, setDueDate] = useState("");
@@ -57,6 +61,7 @@ const ModifyTask = ({
     } catch (error) {
       console.log(error, "failed in user edit");
     }
+    refreshTasks();
     setIsEdit(false);
   };
 
@@ -69,7 +74,7 @@ const ModifyTask = ({
           <h2>View/Edit Task</h2>
           <form className="modalForm" onSubmit={handleSubmit}>
             <div className="modalFormDetails">
-              <span>Message</span>
+              <p>Message</p>
               <div>
                 {isEdit ? (
                   <input
@@ -78,13 +83,13 @@ const ModifyTask = ({
                     onChange={handleMessage}
                   />
                 ) : (
-                  <span>{message}</span>
+                  <div className="messageMore">{message}</div>
                 )}
               </div>
             </div>
 
             <div className="modalFormDetails">
-              <span>Due Date</span>
+              <p>Due Date</p>
               <div>
                 {isEdit ? (
                   <input
@@ -99,14 +104,14 @@ const ModifyTask = ({
             </div>
 
             <div className="modalFormDetails">
-              <span>Created Date</span>
+              <p>Created Date</p>
               <div>
                 <span>{created_on}</span>
               </div>
             </div>
 
             <div className="modalFormDetails">
-              <span>Priority</span>
+              <p>Priority</p>
               <div>
                 {isEdit ? (
                   <input
@@ -130,7 +135,7 @@ const ModifyTask = ({
                     onChange={handleAssignName}
                   />
                 ) : (
-                  <span>{assigned_to}</span>
+                  <span>{assigned_from}</span>
                 )}
               </div>
             </div>
@@ -139,12 +144,11 @@ const ModifyTask = ({
               <button className="close" onClick={onClose}>
                 Close
               </button>
-              {/* <img
-                src={editIcon}
-                alt="editIcon"
-                onClick={() => setIsEdit(true)}
-              /> */}
-              <button onClick={() => setIsEdit(true)}>Edit</button>
+              <div className="editDetails" onClick={() => setIsEdit(true)}>
+                <img src={editIcon} alt="editIcon" />
+                Edit
+              </div>
+              {/* <button onClick={() => setIsEdit(true)}>Edit</button> */}
               <button type="submit">Update </button>
             </div>
           </form>

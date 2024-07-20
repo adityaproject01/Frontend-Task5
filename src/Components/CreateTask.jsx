@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../style.css";
 import { listUserFun, createTasksFun } from "./TaskApi";
 
-const CreateTask = ({ isopen, onclose }) => {
-  const [userListData, setUSerListData] = useState([]);
-  const [dueDate, setDueDate] = useState("");
-
+const CreateTask = ({ isopen, onclose, refreshTasks }) => {
+  const [userListData, setUserListData] = useState({ users: [] });
+  const [taskCreated, setTaskCreated] = useState(false);
   const [createTaskDetails, setCreateTaskDetails] = useState({
     message: "",
     due_date: "",
@@ -15,14 +14,15 @@ const CreateTask = ({ isopen, onclose }) => {
 
   useEffect(() => {
     if (isopen) {
-      listUserFun(setUSerListData);
+      listUserFun(setUserListData);
     }
-  }, [isopen, createTaskDetails]);
+  }, [isopen]);
   if (!isopen) return null;
 
   function handleGetName(event) {
     setCreateTaskDetails({ ...createTaskDetails, message: event.target.value });
   }
+
   function handleGetDate(event) {
     const inputDate = event.target.value;
     if (!inputDate) return;
@@ -35,42 +35,48 @@ const CreateTask = ({ isopen, onclose }) => {
     let hour = dateObj.getHours();
     const minute = ("0" + dateObj.getMinutes()).slice(-2);
     let second = 11;
-    // let period = "AM";
-    // if (hour >= 12) {
-    //   period = "PM";
-    //   if (hour > 12) hour -= 12;
-    // }
+
     if (hour === 0) hour = 12;
     const formattedTime = `${hour}:${minute}:${second}`;
-    setDueDate(`${year}-${month}-${day} ${formattedTime}`);
-    console.log(dueDate, "dfd");
+
+    // Set due_date in createTaskDetails
     setCreateTaskDetails({
       ...createTaskDetails,
-      due_date: dueDate,
+      due_date: `${year}-${month}-${day} ${formattedTime}`,
     });
   }
+
   function handleGetTaskType(event) {
     setCreateTaskDetails({
       ...createTaskDetails,
       priority: event.target.value,
     });
   }
+
   function handleGetUser(event) {
+    const selectedIndex = event.target.value;
     setCreateTaskDetails({
       ...createTaskDetails,
-      assigned_to: event.target.value,
+      assigned_to: userListData.users[selectedIndex].id, // Assuming each user has an 'id' property
     });
   }
+
   const handleCreateTask = async (event) => {
     event.preventDefault();
     try {
       await createTasksFun(createTaskDetails);
+      setTaskCreated(true);
       setCreateTaskDetails({
         message: "",
         due_date: "",
         priority: "",
         assigned_to: "",
       });
+      setTimeout(() => {
+        setTaskCreated(false);
+        refreshTasks();
+        onclose();
+      }, 1000);
     } catch (error) {
       console.error("Error creating task:", error);
     }
@@ -78,21 +84,33 @@ const CreateTask = ({ isopen, onclose }) => {
 
   return (
     <div className="modal-main">
-      <div class="modal">
+      <div className="modal">
         <div className="modal-content">
           <h2>Add New Task</h2>
           <form className="modalForm" onSubmit={handleCreateTask}>
             <div className="modalFormDetails">
               <label>Name</label>
-              <input id="name" onChange={handleGetName} type="text" />
+              <input
+                id="name"
+                value={createTaskDetails.message}
+                onChange={handleGetName}
+                type="text"
+              />
             </div>
             <div className="modalFormDetails">
               <label>Date</label>
-              <input type="datetime-local" onChange={handleGetDate} />
+              <input
+                type="datetime-local"
+                value={createTaskDetails.due_date}
+                onChange={handleGetDate}
+              />
             </div>
             <div className="modalFormDetails">
               <label>Priority</label>
-              <select type="text" onChange={handleGetTaskType}>
+              <select
+                value={createTaskDetails.priority}
+                onChange={handleGetTaskType}
+              >
                 <option disabled>Choose Task</option>
                 <option value="1">Normal Task</option>
                 <option value="2">Medium Task</option>
@@ -102,16 +120,17 @@ const CreateTask = ({ isopen, onclose }) => {
             <div className="modalFormDetails">
               <label>User</label>
               <select onChange={handleGetUser}>
-                <option>Choose the USer</option>
-                {userListData?.users?.map((item, index) => (
-                  <option key={index} value={index}>
+                <option>Choose the User</option>
+                {userListData.users.map((item, index) => (
+                  <option key={item.id} value={index}>
                     {item.name}
                   </option>
                 ))}
               </select>
             </div>
             <div className="modalFormDetails">
-              <button>Create</button>
+              <button type="submit">Create</button>
+              {taskCreated && <p>Task Created!</p>}
               <button className="close" onClick={onclose}>
                 Close
               </button>

@@ -27,7 +27,9 @@ const Home = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const refreshTaskList = () => {
+    listTaskFun(setListTaskData);
+  };
   return (
     <div className="main">
       <div className="container">
@@ -66,12 +68,19 @@ const Home = () => {
           <div className="rightContainer2">
             <div className="box4">
               <button onClick={openModal}>Create Task</button>
-              <CreateTask isopen={isModalOpen} onclose={closeModal} />
+              <CreateTask
+                isopen={isModalOpen}
+                onclose={closeModal}
+                refreshTasks={refreshTaskList}
+              />
             </div>
             <div className="boxs">
               <div className="box1">
                 <p style={{ padding: "5px" }}>Priority Task</p>
-                <HighPriority listTaskData={listTaskData} />
+                <HighPriority
+                  listTaskData={listTaskData}
+                  refreshTasks={refreshTaskList}
+                />
               </div>
               <div className="box2">
                 <p style={{ padding: "5px" }}>Medium Task</p>
