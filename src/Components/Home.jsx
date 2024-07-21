@@ -49,7 +49,13 @@ const Home = () => {
         />
 
         {toggleBtn ? (
-          <div className="left">
+          <div className="leftsm">
+            <img
+              src={closeIcon}
+              className="closeIcon"
+              alt="close icon"
+              onClick={handleToggleOff}
+            />
             <div className="rightContainer1sm">
               <div className="rightContainer1Rightsm">
                 <img
@@ -59,7 +65,7 @@ const Home = () => {
                 />
                 <img
                   src={closeIcon}
-                  className=""
+                  className="closeIcon1"
                   alt="close icon"
                   onClick={handleToggleOff}
                 />
@@ -92,6 +98,52 @@ const Home = () => {
         ) : (
           <></>
         )}
+        <div className="left">
+          <img
+            src={closeIcon}
+            className="closeIcon"
+            alt="close icon"
+            onClick={handleToggleOff}
+          />
+          <div className="rightContainer1sm">
+            <div className="rightContainer1Rightsm">
+              <img
+                src={userIcon}
+                className="profilesm"
+                alt="notofocation icon"
+              />
+              <img
+                src={closeIcon}
+                className="closeIcon"
+                alt="close icon"
+                onClick={handleToggleOff}
+              />
+            </div>
+          </div>
+          <div className="rightContainer1sm">
+            <div className="rightContainer1Rightsm">
+              <img src={dropdownIcon} alt="dropdown icon" />
+
+              <p>Aditya</p>
+
+              <img src={notoficationIcon} alt="notofocation icon" />
+            </div>
+          </div>
+          <div className="menus">
+            <div href="#" className="btn iconSet">
+              <img src={dashboardIcon} alt="dashboardIcon" />
+              <p>Dashboard</p>
+            </div>
+            <div href="#" className="btn active iconSet ">
+              <img src={taskIcon} alt="dashboardIcon" />
+              <p>My Task</p>
+            </div>
+            <div href="#" className="btn iconSet ">
+              <img src={clientsIcon} alt="dashboardIcon" />
+              <p>Clients</p>
+            </div>
+          </div>
+        </div>
         <div className="rightContainer">
           <div className="rightContainer1">
             <div className="rightContainer1Left">
