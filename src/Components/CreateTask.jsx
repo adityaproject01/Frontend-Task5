@@ -154,16 +154,6 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
               {errors.message && <p className="error">{errors.message}</p>}
             </div>
 
-            {/* <div className="modalFormDetails">
-              <label>Message</label>
-              <input
-                id="name"
-                value={createTaskDetails.message}
-                onChange={handleGetName}
-                type="text"
-              />
-              {errors.message && <p className="error">{errors.message}</p>}
-            </div> */}
             <div className="modalFormDetails">
               <label>Date</label>
               <input
