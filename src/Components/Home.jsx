@@ -6,8 +6,10 @@ import dashboardIcon from "../assets/icons/dashboard.svg";
 import taskIcon from "../assets/icons/task.svg";
 import notoficationIcon from "../assets/icons/notifications-outline.svg";
 import userIcon from "../assets/icons/profile.jpg";
-import dropdownIcon from "../assets/icons/caret-square-down.svg";
+import dropdownIcon from "../assets/icons/caret-down-square.svg";
 import clientsIcon from "../assets/icons/users.svg";
+import closeIcon from "../assets/icons/close.svg";
+import menuIcon from "../assets/icons/menu.svg";
 
 import HighPriority from "./HighPriority";
 import NormalTask from "./NormalTask";
@@ -16,7 +18,7 @@ import CreateTask from "./CreateTask";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [listTaskData, setListTaskData] = useState(null);
-  const [toggleBtn, setToggleBtn] = useState(false);
+  const [toggleBtn, setToggleBtn] = useState(true);
   useEffect(() => {
     listTaskFun(setListTaskData);
   }, []);
@@ -39,29 +41,37 @@ const Home = () => {
   return (
     <div className="main">
       <div className="container">
-        <button
+        <img
           className="toggleBtn"
-          style={{ zIndex: "1px" }}
           onClick={handleToggleOn}
-        >
-          Toggle
-        </button>
+          src={menuIcon}
+          alt="close icon"
+        />
+
         {toggleBtn ? (
           <div className="left">
-            <div>
-              <button onClick={handleToggleOff}>CloseToggle</button>
-              <p>Aditya</p>
-            </div>
             <div className="rightContainer1sm">
               <div className="rightContainer1Rightsm">
-                <img src={notoficationIcon} alt="notofocation icon" />
                 <img
                   src={userIcon}
                   className="profilesm"
                   alt="notofocation icon"
                 />
-                <span>Aditya</span>
-                <img src={dropdownIcon} alt="notofocation icon" />
+                <img
+                  src={closeIcon}
+                  className=""
+                  alt="close icon"
+                  onClick={handleToggleOff}
+                />
+              </div>
+            </div>
+            <div className="rightContainer1sm">
+              <div className="rightContainer1Rightsm">
+                <img src={dropdownIcon} alt="dropdown icon" />
+
+                <p>Aditya</p>
+
+                <img src={notoficationIcon} alt="notofocation icon" />
               </div>
             </div>
             <div className="menus">
