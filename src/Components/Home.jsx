@@ -4,12 +4,15 @@ import { listTaskFun } from "./TaskApi";
 
 import dashboardIcon from "../assets/icons/dashboard.svg";
 import taskIcon from "../assets/icons/task.svg";
+import messageIcon from "../assets/icons/message.svg";
 import notoficationIcon from "../assets/icons/notifications-outline.svg";
 import userIcon from "../assets/icons/profile.jpg";
 import dropdownIcon from "../assets/icons/caret-down-square.svg";
 import clientsIcon from "../assets/icons/users.svg";
 import closeIcon from "../assets/icons/close.svg";
 import menuIcon from "../assets/icons/menu.svg";
+import billIcon from "../assets/icons/invoice.svg";
+import upgradeIcon from "../assets/icons/upgrade.png";
 
 import HighPriority from "./HighPriority";
 import NormalTask from "./NormalTask";
@@ -83,21 +86,36 @@ const Home = () => {
             <div className="menus">
               <div href="#" className="btn iconSet">
                 <img src={dashboardIcon} alt="dashboardIcon" />
-                <p>Dashboard</p>
+                <span>Dashboard</span>
               </div>
               <div href="#" className="btn active iconSet ">
-                <img src={taskIcon} alt="dashboardIcon" />
-                <p>My Task</p>
+                <img src={taskIcon} alt="taskIcon" />
+                <span>My Task</span>
               </div>
               <div href="#" className="btn iconSet ">
-                <img src={clientsIcon} alt="dashboardIcon" />
-                <p>Clients</p>
+                <img src={clientsIcon} alt="clintIcon" />
+                <span>Clients</span>
+              </div>
+              <div href="#" className="btn iconSet ">
+                <img src={messageIcon} alt="messageIcon" />
+                <span>Message</span>
+              </div>
+              <div href="#" className="btn iconSet ">
+                <img src={billIcon} alt="messageIcon" />
+                <span>Billing</span>
+              </div>
+            </div>
+            <div className="leftDown">
+              <div className="upgrade">
+                <p>Upgrade to pro for more feature</p>
+                <img src={upgradeIcon} alt="upgradeL=icon" />
               </div>
             </div>
           </div>
         ) : (
           <></>
         )}
+        {/* non mobile */}
         <div className="left">
           <img
             src={closeIcon}
@@ -129,18 +147,33 @@ const Home = () => {
               <img src={notoficationIcon} alt="notofocation icon" />
             </div>
           </div>
+          <p>Aditya</p>
           <div className="menus">
             <div href="#" className="btn iconSet">
               <img src={dashboardIcon} alt="dashboardIcon" />
-              <p>Dashboard</p>
+              <span>Dashboard</span>
             </div>
             <div href="#" className="btn active iconSet ">
-              <img src={taskIcon} alt="dashboardIcon" />
-              <p>My Task</p>
+              <img src={taskIcon} alt="taskIcon" />
+              <span>My Task</span>
             </div>
             <div href="#" className="btn iconSet ">
-              <img src={clientsIcon} alt="dashboardIcon" />
-              <p>Clients</p>
+              <img src={clientsIcon} alt="clintIcon" />
+              <span>Clients</span>
+            </div>
+            <div href="#" className="btn iconSet ">
+              <img src={messageIcon} alt="messageIcon" />
+              <span>Message</span>
+            </div>
+            <div href="#" className="btn iconSet ">
+              <img src={billIcon} alt="messageIcon" />
+              <span>Billing</span>
+            </div>
+          </div>
+          <div className="leftDown">
+            <div className="upgrade">
+              <p>Upgrade to pro for more feature</p>
+              <img src={upgradeIcon} alt="upgradeL=icon" />
             </div>
           </div>
         </div>
