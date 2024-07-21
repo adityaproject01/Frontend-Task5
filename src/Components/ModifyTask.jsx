@@ -145,7 +145,7 @@ const ModifyTask = ({
                 </div>
 
                 <div className="modalFormDetails">
-                  <p>Created Date</p>
+                  <p>Created On</p>
                   <div>
                     <span>{created_on}</span>
                   </div>
