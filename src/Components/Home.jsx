@@ -16,7 +16,7 @@ import CreateTask from "./CreateTask";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [listTaskData, setListTaskData] = useState(null);
-
+  const [toggleBtn, setToggleBtn] = useState(false);
   useEffect(() => {
     listTaskFun(setListTaskData);
   }, []);
@@ -30,28 +30,58 @@ const Home = () => {
   const refreshTaskList = () => {
     listTaskFun(setListTaskData);
   };
+  function handleToggleOn() {
+    setToggleBtn(true);
+  }
+  function handleToggleOff() {
+    setToggleBtn(false);
+  }
   return (
     <div className="main">
       <div className="container">
-        <div className="left">
-          <div>
-            <p>Aditya</p>
+        <button
+          className="toggleBtn"
+          style={{ zIndex: "1px" }}
+          onClick={handleToggleOn}
+        >
+          Toggle
+        </button>
+        {toggleBtn ? (
+          <div className="left">
+            <div>
+              <button onClick={handleToggleOff}>CloseToggle</button>
+              <p>Aditya</p>
+            </div>
+            <div className="rightContainer1sm">
+              <div className="rightContainer1Rightsm">
+                <img src={notoficationIcon} alt="notofocation icon" />
+                <img
+                  src={userIcon}
+                  className="profilesm"
+                  alt="notofocation icon"
+                />
+                <span>Aditya</span>
+                <img src={dropdownIcon} alt="notofocation icon" />
+              </div>
+            </div>
+            <div className="menus">
+              <div href="#" className="btn iconSet">
+                <img src={dashboardIcon} alt="dashboardIcon" />
+                <p>Dashboard</p>
+              </div>
+              <div href="#" className="btn active iconSet ">
+                <img src={taskIcon} alt="dashboardIcon" />
+                <p>My Task</p>
+              </div>
+              <div href="#" className="btn iconSet ">
+                <img src={clientsIcon} alt="dashboardIcon" />
+                <p>Clients</p>
+              </div>
+            </div>
           </div>
-          <div className="menus">
-            <div href="#" className="btn iconSet">
-              <img src={dashboardIcon} alt="dashboardIcon" />
-              <p>Dashboard</p>
-            </div>
-            <div href="#" className="btn active iconSet ">
-              <img src={taskIcon} alt="dashboardIcon" />
-              <p>My Task</p>
-            </div>
-            <div href="#" className="btn iconSet ">
-              <img src={clientsIcon} alt="dashboardIcon" />
-              <p>Clients</p>
-            </div>
-          </div>
-        </div>
+        ) : (
+          <></>
+        )}
         <div className="rightContainer">
           <div className="rightContainer1">
             <div className="rightContainer1Left">
@@ -74,6 +104,7 @@ const Home = () => {
                 refreshTasks={refreshTaskList}
               />
             </div>
+
             <div className="boxs">
               <div className="box1">
                 <p style={{ padding: "5px" }}>Priority Task</p>
@@ -84,11 +115,17 @@ const Home = () => {
               </div>
               <div className="box2">
                 <p style={{ padding: "5px" }}>Medium Task</p>
-                <MediumPriority listTaskData={listTaskData} />
+                <MediumPriority
+                  listTaskData={listTaskData}
+                  refreshTasks={refreshTaskList}
+                />
               </div>
               <div className="box3">
                 <p style={{ padding: "5px" }}>Normal Task</p>
-                <NormalTask listTaskData={listTaskData} />
+                <NormalTask
+                  listTaskData={listTaskData}
+                  refreshTasks={refreshTaskList}
+                />
               </div>
             </div>
           </div>

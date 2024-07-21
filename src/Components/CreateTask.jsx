@@ -118,9 +118,9 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
               </select>
             </div>
             <div className="modalFormDetails">
-              <label>User</label>
+              <label>Assign To</label>
               <select onChange={handleGetUser}>
-                <option>Choose the User</option>
+                <option disabled>Choose the User</option>
                 {userListData.users.map((item, index) => (
                   <option key={item.id} value={index}>
                     {item.name}

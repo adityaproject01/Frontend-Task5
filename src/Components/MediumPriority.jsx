@@ -4,7 +4,7 @@ import viewmoreIcon from "../assets/icons/chevron-right.svg";
 import ModifyTask from "./ModifyTask";
 import { deleteTaskFun } from "./TaskApi";
 
-const MediumPriority = ({ listTaskData }) => {
+const MediumPriority = ({ listTaskData, refreshTasks }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTaskIndex, setSelectedTaskIndex] = useState(null);
   const [tasks, setTasks] = useState([]);
@@ -58,16 +58,17 @@ const MediumPriority = ({ listTaskData }) => {
               </button>
               {selectedTaskIndex === index && (
                 <ModifyTask
+                  listTaskData={listTaskData}
                   key={index}
                   isModalOpen={isModalOpen}
                   message={item.message}
                   due_date={item.due_date}
                   created_on={item.created_on}
-                  priority={item.priority}
-                  assigned_to={item.assigned_to}
-                  assigned_from={item.assigned_from}
+                  priority={item}
+                  assigned_to={item.assigned_name}
                   id={item.id}
                   onClose={onClose}
+                  refreshTasks={refreshTasks}
                 />
               )}
             </div>

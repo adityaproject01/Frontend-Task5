@@ -58,14 +58,14 @@ const HighPriority = ({ listTaskData, refreshTasks }) => {
               </button>
               {selectedTaskIndex === index && (
                 <ModifyTask
+                  listTaskData={listTaskData}
                   key={index}
                   isModalOpen={isModalOpen}
                   message={item.message}
                   due_date={item.due_date}
                   created_on={item.created_on}
-                  priority={item.priority}
-                  assigned_to={item.assigned_to}
-                  assigned_from={item.assigned_from}
+                  priority={item}
+                  assigned_to={item.assigned_name}
                   id={item.id}
                   onClose={onClose}
                   refreshTasks={refreshTasks}
