@@ -21,7 +21,7 @@ import CreateTask from "./CreateTask";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [listTaskData, setListTaskData] = useState(null);
-  const [toggleBtn, setToggleBtn] = useState(true);
+  const [toggleBtn, setToggleBtn] = useState(false);
   useEffect(() => {
     listTaskFun(setListTaskData);
   }, []);
