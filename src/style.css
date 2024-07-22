@@ -2,6 +2,7 @@
     margin: 0px;
     error:red;
 }
+
 @media (max-width: 575px) {
   .left{
     display: none;
@@ -73,6 +74,21 @@
   }
 .upgrade img{
 width: 100px;
+}
+
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
 }
   .menus {
       height: 40%;
@@ -600,6 +616,21 @@ width: 100px;
 .upgrade img{
 width: 100px;
 }
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
+
+}
 .menus {
     height: 40%;
     width: 100%;
@@ -1067,6 +1098,21 @@ height: 100px;
 .upgrade img{
 width: 100px;
 }
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
+
+}
 .menus {
     height: 40%;
     width: 100%;
@@ -1517,6 +1563,21 @@ height: 100px;
 }
 .upgrade img{
 width: 100px;
+}
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
+
 }
 .menus {
     height: 40%;
@@ -1970,6 +2031,21 @@ height: 100px;
     }
 .upgrade img{
   width: 100px;
+}
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
+
 }
     .menus {
         height: 40%;
@@ -2434,7 +2510,21 @@ align-items: center;
         align-items: center;
         align-content: flex-end;
     }
+    .uppgradeBtn {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+      align-content: center;
+      width: 90%;
+      height: 20%;
+      background: #F9F2FE;
+      border: none;
+      justify-content: flex-end;
+      border-radius: 10px;
+  margin-top: 10px;
 
+  }
     .iconSet {
         width: 80%;
         height: 20%;
@@ -2642,6 +2732,20 @@ align-items: center;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+}
+.uppgradeBtn {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  height: 20%;
+  background: #F9F2FE;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 .modal-content h2{
   display: flex;

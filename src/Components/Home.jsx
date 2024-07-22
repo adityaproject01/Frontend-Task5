@@ -107,8 +107,8 @@ const Home = () => {
             </div>
             <div className="leftDown">
               <div className="upgrade">
+                <button className="uppgradeBtn"> Upgrade</button>
                 <p>Upgrade to pro for more feature</p>
-                <img src={upgradeIcon} alt="upgradeL=icon" />
               </div>
             </div>
           </div>
@@ -172,8 +172,8 @@ const Home = () => {
           </div>
           <div className="leftDown">
             <div className="upgrade">
+              <button className="uppgradeBtn">Upgrade</button>
               <p>Upgrade to pro for more feature</p>
-              <img src={upgradeIcon} alt="upgradeL=icon" />
             </div>
           </div>
         </div>
