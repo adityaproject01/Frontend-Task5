@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { updateTaskFun } from "./TaskApi";
+
 import editIcon from "../assets/icons/icons8-edit.svg";
-import { listUserFun } from "./TaskApi";
+import { listUserFun, updateTaskFun } from "./TaskApi";
 import updatedIcon from "../assets/icons/updated.png";
 import "../style.css";
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 import "../style.css";
 import { listUserFun, createTasksFun } from "./TaskApi";
 
@@ -28,20 +29,19 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
 
   function handleGetName(event) {
     setCreateTaskDetails({ ...createTaskDetails, message: event.target.value });
-    setErrors({ ...errors, message: "" }); // Clear error when typing
+    setErrors({ ...errors, message: "" });
   }
 
   function handleGetDate(event) {
     const inputDate = event.target.value;
     if (!inputDate) {
-      setErrors({ ...errors, due_date: "Due date is " });
+      setErrors({ ...errors, due_date: "Due date is required" });
       return;
     } else {
-      setErrors({ ...errors, due_date: "" }); // Clear error when date is entered
+      setErrors({ ...errors, due_date: "" });
     }
 
     const dateObj = new Date(inputDate);
-
     const year = dateObj.getFullYear();
     const month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
     const day = ("0" + dateObj.getDate()).slice(-2);
@@ -52,7 +52,6 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
     if (hour === 0) hour = 12;
     const formattedTime = `${hour}:${minute}:${second}`;
 
-    // Set due_date in createTaskDetails
     setCreateTaskDetails({
       ...createTaskDetails,
       due_date: `${year}-${month}-${day} ${formattedTime}`,
@@ -64,16 +63,16 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
       ...createTaskDetails,
       priority: event.target.value,
     });
-    setErrors({ ...errors, priority: "" }); // Clear error when selecting priority
+    setErrors({ ...errors, priority: "" });
   }
 
   function handleGetUser(event) {
     const selectedIndex = event.target.value;
     setCreateTaskDetails({
       ...createTaskDetails,
-      assigned_to: userListData.users[selectedIndex].id, // Assuming each user has an 'id' property
+      assigned_to: userListData.users[selectedIndex].id,
     });
-    setErrors({ ...errors, assigned_to: "" }); // Clear error when selecting user
+    setErrors({ ...errors, assigned_to: "" });
   }
 
   const handleCreateTask = async (event) => {
@@ -89,25 +88,22 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
       newErrors.message = "";
     }
 
-    // Validate due_date
     if (!createTaskDetails.due_date.trim()) {
-      newErrors.due_date = "Plsease select the Due date ";
+      newErrors.due_date = "Please select the Due date";
       formIsValid = false;
     } else {
       newErrors.due_date = "";
     }
 
-    // Validate priority
     if (!createTaskDetails.priority.trim()) {
-      newErrors.priority = "Please select the Priority ";
+      newErrors.priority = "Please select the Priority";
       formIsValid = false;
     } else {
       newErrors.priority = "";
     }
 
-    // Validate assigned_to
-    if (!createTaskDetails.assigned_to.trim()) {
-      newErrors.assigned_to = "Please select the Assignee  ";
+    if (!createTaskDetails.assigned_to) {
+      newErrors.assigned_to = "Please select the Assignee";
       formIsValid = false;
     } else {
       newErrors.assigned_to = "";
@@ -117,7 +113,7 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
 
     if (formIsValid) {
       try {
-        await createTasksFun(createTaskDetails);
+        createTasksFun(createTaskDetails);
         setTaskCreated(true);
         setCreateTaskDetails({
           message: "",
@@ -202,6 +198,13 @@ const CreateTask = ({ isopen, onclose, refreshTasks }) => {
       </div>
     </div>
   );
+};
+
+// PropTypes validation
+CreateTask.propTypes = {
+  isopen: PropTypes.bool.isRequired,
+  onclose: PropTypes.func.isRequired,
+  refreshTasks: PropTypes.func.isRequired,
 };
 
 export default CreateTask;
